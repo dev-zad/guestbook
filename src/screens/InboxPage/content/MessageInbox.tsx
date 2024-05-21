@@ -46,6 +46,8 @@ const MessageInbox: React.FC = () => {
       console.error('Error deleting message:', error);
     }
   };
+  console.log(messages);
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -64,7 +66,7 @@ const MessageInbox: React.FC = () => {
               <p><strong>Message:</strong> {message.message}</p>
               {/* Delete button for each message */}
               <Button
-                className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white px-2 py-1 "
+                className="text-white bg-red-600 "
                 onClick={() => handleDelete(message.id)}
               >
                 Delete
