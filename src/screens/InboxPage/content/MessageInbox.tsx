@@ -33,9 +33,14 @@ const MessageInbox: React.FC = () => {
   }, []);
 
   const handleDelete = async (id: number) => {
+    console.log('Deleting message with ID:', id);
+
     try {
       const response = await fetch(`/api/messages/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
       if (!response.ok) {
         throw new Error('Failed to delete message');
@@ -46,7 +51,6 @@ const MessageInbox: React.FC = () => {
       console.error('Error deleting message:', error);
     }
   };
-  console.log(messages);
 
 
   if (loading) return <div>Loading...</div>;
@@ -66,7 +70,7 @@ const MessageInbox: React.FC = () => {
               <p><strong>Message:</strong> {message.message}</p>
               {/* Delete button for each message */}
               <Button
-                className="text-white bg-red-600 "
+                className="text-white bg-red-600"
                 onClick={() => handleDelete(message.id)}
               >
                 Delete

@@ -1,3 +1,4 @@
+"use client";
 import { NextApiRequest, NextApiResponse } from 'next';
 import { readMessages, writeMessages } from '@/lib/utilsInbox';
 
@@ -26,13 +27,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   } else if (req.method === 'GET') {
     return res.status(200).json(messages);
   } else if (req.method === 'DELETE') {
-    // Handle DELETE request to delete a specific message
     const { id } = req.query;
     const messageId = parseInt(id as string, 10);
     const index = messages.findIndex(message => message.id === messageId);
     if (index !== -1) {
+      // Remove the message from the array
       messages.splice(index, 1);
-      // Write messages to the file system after deletion
+      // Write updated messages to the file system
       writeMessages(messages).catch((err) => {
         console.error('Error writing messages:', err);
       });
