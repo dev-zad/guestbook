@@ -1,4 +1,5 @@
 "use client";
+import { Button } from '@/components/ui/button';
 import React, { useEffect, useState } from 'react';
 
 interface Message {
@@ -31,6 +32,21 @@ const MessageInbox: React.FC = () => {
     fetchMessages();
   }, []);
 
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await fetch(`/api/messages/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete message');
+      }
+      // Remove the deleted message from the state
+      setMessages(prevMessages => prevMessages.filter(message => message.id !== id));
+    } catch (error) {
+      console.error('Error deleting message:', error);
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -42,10 +58,17 @@ const MessageInbox: React.FC = () => {
       ) : (
         <ul className="space-y-4">
           {messages.map(message => (
-            <li key={message.id} className="p-4 border rounded-lg shadow-sm">
+            <li key={message.id} className="p-4 border rounded-lg shadow-sm relative">
               <p><strong>Email:</strong> {message.email}</p>
               <p><strong>Username:</strong> {message.username}</p>
               <p><strong>Message:</strong> {message.message}</p>
+              {/* Delete button for each message */}
+              <Button
+                className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white px-2 py-1 "
+                onClick={() => handleDelete(message.id)}
+              >
+                Delete
+              </Button>
             </li>
           ))}
         </ul>
