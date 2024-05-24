@@ -1,4 +1,3 @@
-"use client";
 import { NextApiRequest, NextApiResponse } from 'next';
 import { readMessages, writeMessages } from '@/lib/utilsInbox';
 
@@ -16,6 +15,7 @@ readMessages().then((loadedMessages) => {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
+    // Handle POST requests
     const { email, username, message } = req.body;
     const newMessage = { id: idCounter++, email, username, message };
     messages.push(newMessage);
@@ -25,8 +25,23 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     });
     return res.status(201).json(newMessage);
   } else if (req.method === 'GET') {
-    return res.status(200).json(messages);
+    // Handle GET requests
+    const { id } = req.query;
+    if (id) {
+      // If an id parameter is provided, find the message with that id
+      const messageId = parseInt(id as string, 10);
+      const message = messages.find(message => message.id === messageId);
+      if (message) {
+        return res.status(200).json(message);
+      } else {
+        return res.status(404).json({ error: 'Message not found' });
+      }
+    } else {
+      // If no id parameter is provided, return all messages
+      return res.status(200).json(messages);
+    }
   } else if (req.method === 'DELETE') {
+    // Handle DELETE requests
     const { id } = req.query;
     const messageId = parseInt(id as string, 10);
     const index = messages.findIndex(message => message.id === messageId);
@@ -42,6 +57,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       return res.status(404).json({ error: 'Message not found' });
     }
   } else {
+    // Handle other HTTP methods
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 }

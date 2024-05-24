@@ -1,27 +1,39 @@
-// lib/utils.ts
-"use client";
+// utilsInbox.ts
 import fs from 'fs-extra';
 import path from 'path';
 
-// Define the path for storing messages
-const messagesFilePath = path.join(process.cwd(), 'messages.json');
-
-// Function to read messages from file
-export const readMessages = async () => {
+const messagesFilePath = path.resolve(process.cwd(), 'messages.json');
+export type Message = {
+    id: number;
+    email: string;
+    username: string;
+    message: string;
+};
+export async function readMessages() {
     try {
-        const messages = await fs.readJSON(messagesFilePath);
-        return messages;
-    } catch (err: any) {
-        // If the file doesn't exist, return an empty array
-        if (err.code === 'ENOENT') {
-            return [];
-        }
-        throw err;
+        const data = await fs.readFile(messagesFilePath, 'utf-8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading messages file:', error);
+        throw new Error('Failed to read messages file');
     }
-};
+}
 
-// Function to write messages to file
-export const writeMessages = async (messages: any) => {
-    await fs.writeJSON(messagesFilePath, messages);
-};
+export async function getMessage(id: number) {
+    try {
+        const messages = await readMessages();
+        return messages.find((message: Message) => message.id === id);
+    } catch (error) {
+        console.error('Error getting message:', error);
+        throw new Error('Failed to get message');
+    }
+}
 
+export async function writeMessages(messages: Array<Message>) {
+    try {
+        await fs.writeFile(messagesFilePath, JSON.stringify(messages, null, 2));
+    } catch (error) {
+        console.error('Error writing messages file:', error);
+        throw new Error('Failed to write messages file');
+    }
+}

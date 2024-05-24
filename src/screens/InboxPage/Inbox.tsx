@@ -1,7 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import ProtectedRoute from "../ProtectedRoute";
-import MessageInbox from "./content/MessageInbox";
+// import MessageInbox from "./content/MessageInbox";
+import DemoPage from "./content/payments/page";
 
 export function InboxPage() {
 
@@ -18,9 +19,10 @@ export function InboxPage() {
         <div className="flex items-center justify-center">
           <Button onClick={handleLogout} className="btn btn-primary">Log Out</Button>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        {/* <div className="flex flex-col items-center justify-center">
           <MessageInbox />
-        </div>
+        </div> */}
+        <DemoPage />
       </div>
     </ProtectedRoute>
   );
