@@ -9,11 +9,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 
     const { id } = context.params;
-    const message = await getMessage(Number(id));
 
-    return {
-        props: {
-            message,
-        },
-    };
+    try {
+        const message = await getMessage(Number(id));
+
+        return {
+            props: {
+                message,
+            },
+        };
+    } catch (error) {
+        console.error(`Error fetching message with id ${id}:`, error);
+
+        return {
+            notFound: true,
+        };
+    }
 };
