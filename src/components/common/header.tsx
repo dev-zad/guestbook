@@ -91,7 +91,7 @@ export function Header({ className }: SidebarProps) {
   return (
     <div
       className={cn(
-        `flex md:h-12 h-14 bg-basewhite-50 items-center justify-center w-full
+        `flex md:h-14 h-14 bg-basewhite-50 items-center justify-center w-full
           border-b`,
         className
       )}
