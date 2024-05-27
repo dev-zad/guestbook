@@ -1,2 +1,2 @@
-import { PhotoApp } from "@/screens/PhotoPage/index";
-export default PhotoApp;
+// import { PhotoApp } from "@/screens/PhotoPage/index";
+// export default PhotoApp;
