@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { readMessages, writeMessages } from '@/lib/utilsInbox';
 
-let messages: Array<{ id: number, email: string, username: string, message: string }> = [];
+let messages: Array<{ id: number, email: string, username: string, name: string, leader: string, tribe: string, message: string }> = [];
 let idCounter = 1;
 
 // Load messages from the file system when the server starts
@@ -16,8 +16,8 @@ readMessages().then((loadedMessages) => {
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     // Handle POST requests
-    const { email, username, message } = req.body;
-    const newMessage = { id: idCounter++, email, username, message };
+    const { email, username, name, leader, tribe, message } = req.body;
+    const newMessage = { id: idCounter++, email, username, name, leader, tribe, message };
     messages.push(newMessage);
     // Write messages to the file system after each addition
     writeMessages(messages).catch((err) => {

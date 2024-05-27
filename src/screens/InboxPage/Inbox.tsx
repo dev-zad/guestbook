@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import ProtectedRoute from "../ProtectedRoute";
 // import MessageInbox from "./content/MessageInbox";
-import DemoPage from "./content/payments/page";
+import DemoPage from "./content/connects/page";
 
 export function InboxPage() {
 
@@ -16,12 +16,6 @@ export function InboxPage() {
   return (
     <ProtectedRoute>
       <div className="flex flex-col py-20">
-        <div className="flex items-center justify-center">
-          <Button onClick={handleLogout} className="btn btn-primary">Log Out</Button>
-        </div>
-        {/* <div className="flex flex-col items-center justify-center">
-          <MessageInbox />
-        </div> */}
         <DemoPage />
       </div>
     </ProtectedRoute>

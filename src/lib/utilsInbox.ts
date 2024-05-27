@@ -6,7 +6,7 @@ const messagesFilePath = path.resolve(process.cwd(), 'messages.json');
 export type Message = {
     id: number;
     email: string;
-    username: string;
+    name: string;
     message: string;
 };
 export async function readMessages() {

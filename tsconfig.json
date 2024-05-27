@@ -5,6 +5,15 @@
       "dom.iterable",
       "esnext"
     ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "src/types"
+    ],
+    "types": [
+      "next",
+      "multer"
+    ],
+    "target": "esnext",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,

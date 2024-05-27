@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "remixicon/fonts/remixicon.css";
+import { Header } from "@/components/common/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main
+          className={`flex flex-col ${inter.className}`}
+        >
+          <Header />
+          <div>
+            {children}
+          </div>
+        </main>
+      </body>
     </html>
   );
 }

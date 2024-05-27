@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 
 type MessagePageProps = {
     message: Message;
+    name: string;
 };
 
 export { getServerSideProps };
@@ -23,7 +24,7 @@ const MessagePage = ({ message }: MessagePageProps) => {
             <div className='px-20 py-20 border rounded-md'>
                 <h1 className="text-2xl font-semibold text-gray-800 mb-4">Message</h1>
                 <p className="text-gray-600 mb-2">Email: {message.email}</p>
-                <p className="text-gray-600 mb-2">Username: {message.username}</p>
+                <p className="text-gray-600 mb-2">Name: {message.name}</p>
                 <p className="text-gray-600 mb-2">Message: {message.message}</p>
             </div>
             <Button onClick={() => handleBackToInbox()}>Back To Inbox</Button>
