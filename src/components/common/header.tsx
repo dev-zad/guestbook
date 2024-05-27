@@ -22,9 +22,11 @@ export function Header({ className }: SidebarProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    const user = localStorage.getItem('user')
-    setIsLoggedIn(!!user)
-  }, [])
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('user');
+      setIsLoggedIn(!!user);
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user')

@@ -35,20 +35,22 @@ export function LeftSide() {
     const hardcodedUsername = 'admin';
     const hardcodedPassword = 'password';
 
-    if (username === hardcodedUsername && password === hardcodedPassword) {
-      // If the submitted username and password match the hardcoded values,
-      // "authenticate" the user and store their data in local storage
-      const userData = {
-        id: '1',
-        username: 'admin',
-        email: 'admin@example.com',
-        role: 'admin',
-      };
-      localStorage.setItem('user', JSON.stringify(userData));
-      window.location.href = '/inbox-page';
-    } else {
-      console.error('Failed to log in');
-      toast.error('Invalid username or password');
+    if (typeof window !== 'undefined') {
+      if (username === hardcodedUsername && password === hardcodedPassword) {
+        // If the submitted username and password match the hardcoded values,
+        // "authenticate" the user and store their data in local storage
+        const userData = {
+          id: '1',
+          username: 'admin',
+          email: 'admin@example.com',
+          role: 'admin',
+        };
+        localStorage.setItem('user', JSON.stringify(userData));
+        window.location.href = '/inbox-page';
+      } else {
+        console.error('Failed to log in');
+        toast.error('Invalid username or password');
+      }
     }
   };
 
