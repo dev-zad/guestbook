@@ -29,6 +29,7 @@ const variantClassName = {
     h3: "lg:text-[40px] lg:leading-[56px] text-[28px] leading-[40px] font-anton",
     h2: "lg:text-[46px] lg:leading-[64px] text-[32px] leading-[40px] font-anton",
     h1: "lg:text-[86px] lg:leading-[128px] text-[36px] leading-[48px] font-anton",
+    stronger: "lg:text-[180px] text-[36px] lg:leading-[328px] leading-[48px] font-anton",
 
     paragraph: `
     text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] leading-6 md:leading-8 xl:leading-10 font-inter

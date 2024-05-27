@@ -1,2 +1,2 @@
-import { LogInForm } from "@/screens/AdminPage/LogInForm";
+import { LogInForm } from "@/screens/AdminPage/LoginPage/index";
 export default LogInForm;

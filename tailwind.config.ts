@@ -177,7 +177,7 @@ const config = {
           "950": "#292929",
         },
         "hislife": {
-          "100": "#FEC100"
+          "100": "#EAB308"
         }
       },
       borderRadius: {
