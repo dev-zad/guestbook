@@ -10,8 +10,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export function PhotoGallery() {
   const [imageUrls, setImageUrls] = useState<{ url: string; category: string }[]>(() => {
-    const savedUrls = localStorage.getItem('imageUrls');
-    return savedUrls ? JSON.parse(savedUrls) : [];
+    if (typeof window !== 'undefined') {
+      const savedUrls = localStorage.getItem('imageUrls');
+      return savedUrls ? JSON.parse(savedUrls) : [];
+    } else {
+      return [];
+    }
   });
 
   const [checkedImages, setCheckedImages] = useState<string[]>([]);
