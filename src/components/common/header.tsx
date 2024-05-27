@@ -96,7 +96,7 @@ export function Header({ className }: SidebarProps) {
         className
       )}
     >
-      <div className="w-full px-40">
+      <div className="w-full lg:px-40 px-10">
         {/* Desktop */}
         <div className="flex items-center gap-x-8 w-full">
           <div className="md:flex-0 min-w-fit flex-1">
@@ -125,6 +125,9 @@ export function Header({ className }: SidebarProps) {
                   </DrawerHeader>
                   <div className="p-4 pb-0 space-y-4">
                     {getHeaderItems()}
+                  </div>
+                  <div className='flex flex-col '>
+                    {getAuthButtons()}
                   </div>
                 </div>
               </DrawerContent>

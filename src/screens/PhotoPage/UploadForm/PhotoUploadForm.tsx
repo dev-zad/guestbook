@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { Toaster, toast } from "sonner";
 import { Select } from "antd";
 
-export default function PhotoUpload() {
+export function PhotoUpload() {
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [uploadCategory, setUploadCategory] = useState('catalyst');
 
