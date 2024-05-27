@@ -17,10 +17,12 @@ export function PhotoUpload() {
   });
 
   useEffect(() => {
-    console.log("Updated Image URLs:", imageUrls);
-    // Save the image URLs in the local storage whenever they change
-    localStorage.setItem('imageUrls', JSON.stringify(imageUrls));
+    if (typeof window !== 'undefined') {
+      // Save the image URLs in the local storage whenever they change
+      localStorage.setItem('imageUrls', JSON.stringify(imageUrls));
+    }
   }, [imageUrls]);
+
 
   const handleUploadComplete = (uploadedFiles: any) => {
     const newUrls = uploadedFiles.map((file: any) => {
