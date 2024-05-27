@@ -6,8 +6,7 @@ interface User {
   id: string;
   username: string;
   email: string;
-  role: 'admin' | 'user'; // Define the role property based on your application's roles
-  // Add other properties as needed
+  role: 'admin' | 'user';
 }
 
 export function useAuth() {
